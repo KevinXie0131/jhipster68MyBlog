@@ -27,7 +27,7 @@ node {
 
     stage('backend tests') {
         try {
-            sh "./mvnw -ntp verify"
+            sh "./mvnw -ntp -Pdev verify"
         } catch(err) {
             throw err
         } finally {
@@ -37,7 +37,7 @@ node {
 
     stage('frontend tests') {
         try {
-            sh "./mvnw -ntp com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
+            sh "./mvnw -ntp -Pdev com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
         } catch(err) {
             throw err
         } finally {
@@ -46,7 +46,7 @@ node {
     }
 
     stage('packaging') {
-        sh "./mvnw -ntp verify -Pprod -DskipTests"
+        sh "./mvnw -ntp verify -Pdev -DskipTests"
         archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
 }
