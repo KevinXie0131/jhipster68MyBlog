@@ -27,7 +27,7 @@ node {
 
     stage('backend tests') {
         try {
-            sh "./mvnw -ntp -Pdev verify"
+            sh "./mvnw -ntp -Pdev -DskipTests verify"
         } catch(err) {
             throw err
         } finally {
