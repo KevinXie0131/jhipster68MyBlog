@@ -1,1 +1,1 @@
-# jhipster68MyBlog
+## jhipster68MyBlog
